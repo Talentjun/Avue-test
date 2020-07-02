@@ -3,7 +3,7 @@ let baseUrl = '/'
     // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = {
     publicPath: baseUrl, // 根据你的实际情况更改这里
-    lintOnSave: true,
+    lintOnSave: false,  //eslint校验
     productionSourceMap: false,
     // configureWebpack: config => {
     //     if (process.env.NODE_ENV === 'production') {
