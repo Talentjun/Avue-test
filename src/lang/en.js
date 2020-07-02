@@ -70,7 +70,8 @@ export default {
     data: 'data',
     cache: 'cache',
     error: 'error',
-    test: 'test'
+    test: 'test',
+    yj:'myPage'
   },
   login: {
     title: 'Login ',

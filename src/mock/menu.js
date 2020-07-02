@@ -48,6 +48,16 @@ const first = [{
   },
   children: []
 }, {
+  label: "yj",
+  path: '/yj',
+  component: 'views/yj/index',
+  icon: 'icon-caidan',
+  meta: {
+    i18n: 'yj',
+    keepAlive: true
+  },
+  children: []
+},{
   label: "标签",
   path: '/tags',
   component: 'views/util/tags',

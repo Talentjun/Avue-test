@@ -26,6 +26,7 @@ export default {
   props: [],
   methods: {
     handleSetLanguage (lang) {
+      console.log(lang)
       this.$i18n.locale = lang;
       this.$store.commit("SET_LANGUAGE", lang);
       let tag = this.tag;

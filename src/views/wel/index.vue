@@ -97,7 +97,7 @@
         @reset-change="emptytChange"
         @submit="submit"
       >
-        <template slot-scope="scope" slot="menuForm">
+        <template slot-scope="" slot="menuForm">
           <el-button @click="tip">自定义按钮</el-button>
         </template>
       </avue-form>
