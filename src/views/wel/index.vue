@@ -727,7 +727,7 @@ export default {
       if(columnIndex === 0 || columnIndex === 3 || columnIndex === 4 || columnIndex === 6){
         const _row = this.spanArr[rowIndex]
         const _col = _row>0?1:0;
-        console.log(_row,_col);
+        // rowspan和colspan都为0表示 隐藏该单元格。这里必须有，否则单元格会被右移一列
         return{
           rowspan:_row,
           colspan:_col
