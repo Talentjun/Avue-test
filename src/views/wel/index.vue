@@ -97,7 +97,7 @@
         @reset-change="emptytChange"
         @submit="submit"
       >
-        <template slot-scope="" slot="menuForm">
+        <template slot-scope slot="menuForm">
           <el-button @click="tip">自定义按钮</el-button>
         </template>
       </avue-form>
@@ -257,7 +257,6 @@ export default {
             prop: "name",
             change: ({ value, column }) => {
               this.$message.success("查看控制台", value, column);
-              console.log("值改变", value, column);
             },
             click: ({ value, column }) => {
               this.$message.success("查看控制台", value, column);
@@ -275,69 +274,77 @@ export default {
         ]
       },
       data11: [
-          {
-            id: '12987122',
-            name: '王小虎',
-            amount1: '234',
-            amount2: '3.2',
-            amount3: 10
-          },
-          {
-            id: '12987123',
-            name: '王小虎',
-            amount1: '165',
-            amount2: '4.43',
-            amount3: 12
-          },
-          {
-            id: '12987124',
-            name: '王小虎',
-            amount1: '324',
-            amount2: '1.9',
-            amount3: 9
-          },
-          {
-            id: '12987125',
-            name: '王小虎',
-            amount1: '621',
-            amount2: '2.2',
-            amount3: 17
-          },
-          {
-            id: '12987126',
-            name: '王小虎',
-            amount1: '539',
-            amount2: '4.1',
-            amount3: 15
-          }
-        ],
-        option11: {
-          page: false,
-          border: true,
-          menuAlign: 'center',
-          column: [
-            {
-              label: 'ID',
-              prop: 'id'
-            },
-            {
-              label: '姓名',
-              prop: 'name'
-            },
-            {
-              label: '数值 1',
-              prop: 'amount1'
-            },
-            {
-              label: '数值 2',
-              prop: 'amount2'
-            },
-            {
-              label: '数值 3',
-              prop: 'amount3'
-            }
-          ]
+        {
+          id: "12987122",
+          name: "王小虎1",
+          amount1: "234",
+          amount2: "3.2",
+          amount3: 10
+        },
+        {
+          id: "12987122",
+          name: "王小虎2",
+          amount1: "345",
+          amount2: "3.2",
+          amount3: 10
+        },
+        {
+          id: "12987123",
+          name: "王小虎",
+          amount1: "165",
+          amount2: "4.43",
+          amount3: 12
+        },
+        {
+          id: "12987124",
+          name: "王小虎",
+          amount1: "324",
+          amount2: "1.9",
+          amount3: 9
+        },
+        {
+          id: "12987125",
+          name: "王小虎",
+          amount1: "621",
+          amount2: "2.2",
+          amount3: 17
+        },
+        {
+          id: "12987126",
+          name: "王小虎",
+          amount1: "539",
+          amount2: "4.1",
+          amount3: 15
         }
+      ],
+      option11: {
+        page: false,
+        border: true,
+        menuAlign: "center",
+        column: [
+          {
+            label: "ID",
+            prop: "id"
+          },
+          {
+            label: "姓名",
+            prop: "name"
+          },
+          {
+            label: "数值 1",
+            prop: "amount1"
+          },
+          {
+            label: "数值 2",
+            prop: "amount2"
+          },
+          {
+            label: "数值 3",
+            prop: "amount3"
+          }
+        ]
+      },
+      spanArr: []
     };
   },
   computed: {
@@ -689,6 +696,22 @@ export default {
       switch: 0,
       phone: "17547400800"
     };
+    let contactDot = 0;
+    this.data11.forEach( (item,index) => {
+      if(index===0){
+        this.spanArr.push(1)
+      }else{
+        if(item.id === this.data11[index-1].id){
+          this.spanArr[contactDot] += 1;
+          this.spanArr.push(0)
+        }else{
+          contactDot = index
+          this.spanArr.push(1)
+        }
+      }
+    })
+    console.log(this.spanArr);
+
   },
   methods: {
     emptytChange() {
@@ -701,14 +724,16 @@ export default {
       this.$message.success("自定义按钮");
     },
     spanMethod11({ row, column, rowIndex, columnIndex }) {
-        if (rowIndex % 2 === 0) {
-          if (columnIndex === 0) {
-            return [1,3]
-          } else if (columnIndex === 1) {
-            return [0, 0]
-          }
+      if(columnIndex === 0 || columnIndex === 3 || columnIndex === 4 || columnIndex === 6){
+        const _row = this.spanArr[rowIndex]
+        const _col = _row>0?1:0;
+        console.log(_row,_col);
+        return{
+          rowspan:_row,
+          colspan:_col
         }
       }
+    }
   }
 };
 </script>
