@@ -54,6 +54,7 @@
                 </div>
               </div>
               <div class="con">
+                <!-- 不同写法 -->
                 <el-image
                   style="width: 100px; height: 100px"
                   src="https://gitee.com/uploads/61/632261_smallweigit.jpg"
