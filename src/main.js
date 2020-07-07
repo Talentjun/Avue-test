@@ -19,6 +19,9 @@ import './styles/common.scss';
 import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
 import crudCommon from '@/mixins/crud.js'
+import AvueFormDesign from './components/packages'
+
+Vue.use(AvueFormDesign)
 window.$crudCommon = crudCommon
 Vue.use(router)
 Vue.use(VueAxios, axios)

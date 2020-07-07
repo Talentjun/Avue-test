@@ -11,6 +11,8 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@sscfaith/avue-form-design": "^1.1.6",
+    "avue-form-design": "^1.1.4",
     "avue-plugin-ueditor": "^0.0.9",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
@@ -25,6 +27,7 @@
     "vue-axios": "^2.1.2",
     "vue-i18n": "^8.7.0",
     "vue-router": "^3.0.1",
+    "vuedraggable": "^2.23.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

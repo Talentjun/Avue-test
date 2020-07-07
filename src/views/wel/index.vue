@@ -1,11 +1,37 @@
 <template>
   <div>
+    <basic-container>
+      <avue-form-design
+        :options="optionsss"
+        :aside-left-width="270"
+        :aside-right-width="380"
+        storage @submit="handleSubmit"
+      ></avue-form-design>
+      <el-row :gutter="20">
+        <el-col :span="8">
+          <el-button @click="pushInput">单行文本</el-button>
+          <el-button @click="pushSelect">下拉框</el-button>
+        </el-col>
+        <el-col :span="8">
+          <avue-form :option="optionss" v-model="objss"></avue-form>
+        </el-col>
+      </el-row>
+    </basic-container>
+
     <!-- 最简单的input -->
     <basic-container>
       值:{{form1}}
       <br />
       <avue-input v-model="form1" placeholder="请输入内容"></avue-input>
     </basic-container>
+
+    <draggable class="wrapper" v-model="list">
+      <transition-group>
+        <div v-for="item in list" :key="item" class="item">
+          <p>{{item}}</p>
+        </div>
+      </transition-group>
+    </draggable>
 
     <!-- inputNumber -->
     <!-- <basic-container>
@@ -108,8 +134,17 @@
     </basic-container>
 
     <basic-container>
-      <avue-crud :data="data11" :option="option11" :span-method="spanMethod11"></avue-crud>
+      <avue-crud :data="data11" :option="option11" :span-method="spanMethod11">
+        <template slot-scope="scope" slot="menuBtn">
+          <el-dropdown-item divided @click.native="tip">自定义按钮</el-dropdown-item>
+        </template>
+        <template slot-scope="scope" slot="menu">
+          <el-button size="small" @click.native="tip">自定义按钮</el-button>
+        </template>
+      </avue-crud>
     </basic-container>
+
+    <iframe src="https://form.avuejs.com/" style="width:100%;height:1000px"></iframe>
 
     <!-- <div class="wel__header">
       <div class="wel__info">
@@ -203,10 +238,22 @@ var DIC = {
   ]
 };
 import { mapGetters } from "vuex";
+import draggable from "vuedraggable";
 export default {
   name: "wel",
+  components: {
+    draggable
+  },
   data() {
     return {
+      optionsss:{ column: [] },
+      optionss: {
+        submitBtn: false,
+        emptyBtn: false,
+        column: []
+      },
+      objss: {},
+      list: [1, 2, 34, 4, 54, 5],
       data: [
         {
           rw: "这是一条工作任务",
@@ -321,6 +368,9 @@ export default {
         page: false,
         border: true,
         menuAlign: "center",
+        editBtn: false,
+        delBtn: false,
+        menuType: "menu",
         column: [
           {
             label: "ID",
@@ -697,23 +747,59 @@ export default {
       phone: "17547400800"
     };
     let contactDot = 0;
-    this.data11.forEach( (item,index) => {
-      if(index===0){
-        this.spanArr.push(1)
-      }else{
-        if(item.id === this.data11[index-1].id){
+    this.data11.forEach((item, index) => {
+      if (index === 0) {
+        this.spanArr.push(1);
+      } else {
+        if (item.id === this.data11[index - 1].id) {
           this.spanArr[contactDot] += 1;
-          this.spanArr.push(0)
-        }else{
-          contactDot = index
-          this.spanArr.push(1)
+          this.spanArr.push(0);
+        } else {
+          contactDot = index;
+          this.spanArr.push(1);
         }
       }
-    })
+    });
     console.log(this.spanArr);
-
   },
   methods: {
+    handleSubmit(e){
+      console.log(e);
+    },
+    pushInput() {
+      this.optionss.column.push({
+        type: "input",
+        label: "单行文本",
+        span: 24,
+        display: true,
+        size: "small",
+        prop: "1594005845702_42106"
+      });
+    },
+    pushSelect() {
+      this.optionss.column.push({
+        type: "select",
+        label: "下拉选择器",
+        dicData: [
+          {
+            label: "选项一",
+            value: 0
+          },
+          {
+            label: "选项二",
+            value: 1
+          },
+          {
+            label: "选项三",
+            value: 2
+          }
+        ],
+        span: 24,
+        display: true,
+        size: "small",
+        prop: "1594006281717_87616"
+      });
+    },
     emptytChange() {
       this.$message.success("清空方法回调");
     },
@@ -724,14 +810,19 @@ export default {
       this.$message.success("自定义按钮");
     },
     spanMethod11({ row, column, rowIndex, columnIndex }) {
-      if(columnIndex === 0 || columnIndex === 3 || columnIndex === 4 || columnIndex === 6){
-        const _row = this.spanArr[rowIndex]
-        const _col = _row>0?1:0;
+      if (
+        columnIndex === 0 ||
+        columnIndex === 3 ||
+        columnIndex === 4 ||
+        columnIndex === 6
+      ) {
+        const _row = this.spanArr[rowIndex];
+        const _col = _row > 0 ? 1 : 0;
         // rowspan和colspan都为0表示 隐藏该单元格。这里必须有，否则单元格会被右移一列
-        return{
-          rowspan:_row,
-          colspan:_col
-        }
+        return {
+          rowspan: _row,
+          colspan: _col
+        };
       }
     }
   }
