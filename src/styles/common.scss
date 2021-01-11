@@ -19,12 +19,86 @@
 //通用配置
 @import './normalize.scss';
 
-a{
+a {
   text-decoration: none;
-  color:#333;
+  color: #333;
 }
-*{
+
+* {
   outline: none;
 }
+
 //滚动条样式
 @include scrollBar;
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('fonts/iconfont.eot?4e1i6c');
+  src: url('fonts/iconfont.eot?4e1i6c#iefix') format('embedded-opentype'),
+    url('fonts/iconfont.ttf?4e1i6c') format('truetype'),
+    url('fonts/iconfont.woff?4e1i6c') format('woff'),
+    url('fonts/iconfont.svg?4e1i6c#iconfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baocun:before {
+  content: "\e601";
+}
+
+.icon-shanchu:before {
+  content: "\e629";
+}
+
+.icon-square-oeps:before {
+  content: "\e6da";
+}
+
+.icon-circle-oeps:before {
+  content: "\e6db";
+}
+
+.icon-chose:before {
+  content: "\e6df";
+}
+
+.icon-move:before {
+  content: "\e6e0";
+}
+
+.icon-zhixian:before {
+  content: "\e6e1";
+}
+
+.icon-jiantouquxian:before {
+  content: "\e6e2";
+}
+
+.icon-quxian:before {
+  content: "\e6e3";
+}
+
+.icon-jiantouzhixian:before {
+  content: "\e6e4";
+}
+
+.icon-square-ling:before {
+  content: "\e6f3";
+}

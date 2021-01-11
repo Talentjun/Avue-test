@@ -47,10 +47,10 @@
       <el-container class="widget-container"
                     direction="vertical">
         <el-header class="widget-container-header">
-          <el-button type="text"
+          <!-- <el-button type="text"
                      size="medium"
                      icon="el-icon-document"
-                     @click="handleAvueDoc">Avue文档</el-button>
+                     @click="handleAvueDoc">Avue文档</el-button> -->
           <el-button type="text"
                      size="medium"
                      icon="el-icon-upload2"

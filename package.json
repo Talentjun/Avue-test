@@ -11,6 +11,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@antv/g6": "^3.5.10",
     "@sscfaith/avue-form-design": "^1.1.6",
     "avue-form-design": "^1.1.4",
     "avue-plugin-ueditor": "^0.0.9",
@@ -18,7 +19,10 @@
     "babel-polyfill": "^6.26.0",
     "classlist-polyfill": "^1.2.0",
     "element-ui": "^2.4.5",
+    "github-markdown-css": "^4.0.0",
+    "highlight.js": "^10.3.1",
     "js-cookie": "^2.2.0",
+    "marked": "^1.2.0",
     "mockjs": "^1.0.1-beta3",
     "nprogress": "^0.2.0",
     "script-loader": "^0.7.2",
@@ -37,6 +41,7 @@
     "chai": "^4.1.2",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "vue-markdown-loader": "^0.6.2",
     "vue-template-compiler": "^2.5.17",
     "webpack-bundle-analyzer": "^3.0.3"
   },

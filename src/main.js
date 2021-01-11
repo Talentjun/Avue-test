@@ -1,3 +1,11 @@
+/*
+ * @Author: yejun
+ * @Date: 2020-06-30 17:57:54
+ * @LastEditors: yejun
+ * @LastEditTime: 2020-07-13 18:46:59
+ * @Description: Do not edit
+ * @FilePath: \Avue-test\src\main.js
+ */
 import Vue from 'vue';
 import axios from './router/axios';
 import VueAxios from 'vue-axios';
@@ -5,9 +13,11 @@ import App from './App';
 import router from './router/router';
 import './permission'; // 权限
 import './error'; // 日志
-import './cache';//页面缓冲
+import './cache'; //页面缓冲
 import store from './store';
-import { loadStyle } from './util/util'
+import {
+  loadStyle
+} from './util/util'
 import * as urls from '@/config/env';
 import Element from 'element-ui';
 import {
@@ -20,6 +30,8 @@ import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
 import crudCommon from '@/mixins/crud.js'
 import AvueFormDesign from './components/packages'
+import G6 from '@antv/g6'
+Vue.use(G6)
 
 Vue.use(AvueFormDesign)
 window.$crudCommon = crudCommon
