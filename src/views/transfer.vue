@@ -3,9 +3,7 @@
     <basic-container>
       <el-row :gutter="20">
         <el-col :span="4">
-          <el-scrollbar
-            style="height: 390px; border: 1px solid #EBEEF5; border-radius: 5px"
-          >
+          <el-scrollbar class="scorll">
             <el-menu
               default-active="0"
               active-text-color="#73AEFE"
@@ -16,7 +14,7 @@
                 v-for="(item, index) in dataList"
                 :key="index"
               >
-                <div slot="title" style="display: flex; align-items: center">
+                <div slot="title" class="title">
                   <span style="width: 24px"
                     ><i
                       class="el-icon-circle-check"
@@ -28,21 +26,8 @@
             </el-menu>
           </el-scrollbar>
         </el-col>
-        <el-col
-          :span="9"
-          style="border: 1px solid #EBEEF5; padding: 0; border-radius: 5px"
-        >
-          <p
-            style="
-              border-bottom: 1px solid #EBEEF5;
-              padding: 5px;
-              margin: 0;
-              text-align: right;
-              line-height: 2;
-            "
-          >
-            未选商品
-          </p>
+        <el-col :span="9" class="transfer">
+          <p class="transfer-title">未选商品</p>
           <avue-crud
             :data="leftData"
             :option="tableOption1"
@@ -50,15 +35,7 @@
           >
           </avue-crud>
         </el-col>
-        <el-col
-          :span="2"
-          style="
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            height: 390px;
-          "
-        >
+        <el-col :span="2" class="btn-texts">
           <el-button
             icon="el-icon-arrow-left"
             :disabled="listRight.length ? false : true"
@@ -76,21 +53,8 @@
             >加入右侧<i class="el-icon-arrow-right el-icon--right"></i
           ></el-button>
         </el-col>
-        <el-col
-          :span="9"
-          style="border: 1px solid #EBEEF5; padding: 0; border-radius: 5px"
-        >
-          <p
-            style="
-              border-bottom: 1px solid #EBEEF5;
-              padding: 5px;
-              margin: 0;
-              text-align: right;
-              line-height: 2;
-            "
-          >
-            已选商品
-          </p>
+        <el-col :span="9" class="transfer">
+          <p class="transfer-title">已选商品</p>
           <avue-crud
             :data="rightData"
             :option="tableOption2"
@@ -240,4 +204,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.scroll {
+  height: 390px;
+  border: 1px solid #ebeef5;
+  border-radius: 5px;
+}
+.title {
+  display: flex;
+  align-items: center;
+}
+.transfer {
+  border: 1px solid #ebeef5;
+  padding: 0;
+  border-radius: 5px;
+  &-title {
+    border-bottom: 1px solid #ebeef5;
+    padding: 5px;
+    margin: 0;
+    text-align: right;
+    line-height: 2;
+  }
+}
+.btn-texts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 390px;
+}
 </style>
