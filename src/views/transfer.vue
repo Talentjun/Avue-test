@@ -3,7 +3,7 @@
     <basic-container>
       <el-row :gutter="20">
         <el-col :span="4">
-          <el-scrollbar class="scorll">
+          <el-scrollbar class="scroll">
             <el-menu
               default-active="0"
               active-text-color="#73AEFE"
