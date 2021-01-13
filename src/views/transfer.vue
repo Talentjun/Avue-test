@@ -33,6 +33,16 @@
             :option="tableOption1"
             @selection-change="selectionChangeLeft"
           >
+            <template slot="date" slot-scope="scope">
+              <p>
+                {{
+                  scope.row.date.length >= 8
+                    ? scope.row.date.substring(0, 8) + '···'
+                    : scope.row.date
+                }}
+                <i class="forbid"><i></i></i>
+              </p>
+            </template>
           </avue-crud>
         </el-col>
         <el-col :span="2" class="btn-texts">
@@ -73,7 +83,7 @@ export default {
     return {
       leftData: [
         {
-          date: '11000KV-三站1',
+          date: '我我我我我我我我我',
           id: '王小虎1',
         },
         {
@@ -115,6 +125,7 @@ export default {
           {
             label: '数据',
             prop: 'date',
+            slot: true,
           },
         ],
       },
@@ -136,7 +147,7 @@ export default {
         ],
       },
       rightData: [],
-      listLeft: [], // 左侧选中数据
+      listLeft: [], // 左侧选中数据 [{id: xxx, list: []},{}]
       listRight: [], // 右侧选中数据
       dataList: [
         { title: '导航0', checked: true },
@@ -230,5 +241,23 @@ export default {
   justify-content: center;
   flex-direction: column;
   height: 390px;
+}
+.forbid {
+  display: inline-block;
+  vertical-align: sub;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #d9001b;
+  border-radius: 50%;
+  position: relative;
+  i {
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    transform: rotate(-45deg);
+    background: #d9001b;
+  }
 }
 </style>
