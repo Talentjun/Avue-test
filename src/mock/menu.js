@@ -55,6 +55,12 @@ const first = [{
   icon: 'icon-caidan',
   children: []
 },{
+  label: "表格合并",
+  path: '/mergeTable',
+  component: 'views/mergeTable',
+  icon: 'icon-caidan',
+  children: []
+},{
   label: "yj",
   path: '/yj',
   component: 'views/yj/index',
