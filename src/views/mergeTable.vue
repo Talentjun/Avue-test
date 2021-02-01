@@ -57,31 +57,33 @@ export default {
       },
     }
   },
-  mounted() {
-    this.spanArr = []
-    let contactDot = 0
-    let sIdx = 0
-    this.tableData.forEach((item, index) => {
-      if (index === 0) {
-        this.spanArr.push(1)
-        this.sameRowArr.push([index])
-      } else {
-        if (item.originId === this.tableData[index - 1].originId) {
-          this.spanArr[contactDot] += 1
-          this.spanArr.push(0)
-          this.sameRowArr[sIdx].push(index)
-        } else {
-          contactDot = index
-          this.spanArr.push(1)
-          sIdx = sIdx + 1
-          this.sameRowArr.push([index])
-        }
-      }
-    })
-  },
   methods: {
-    tableOnLoad() {},
-    spanMethod({ row, column, rowIndex, columnIndex }) {
+    tableOnLoad() {
+      this.spanArr = []
+      this.sameRowArr = []
+      let contactDot = 0
+      let sIdx = 0
+      this.tableData.forEach((item, index) => {
+        if (index === 0) {
+          this.spanArr.push(1)
+          this.sameRowArr.push([index])
+        } else {
+          // 这里的originId取的是list集合第一个要合并的列的字段
+          if (item.originId === this.tableData[index - 1].originId) {
+            this.spanArr[contactDot] += 1
+            this.spanArr.push(0)
+            this.sameRowArr[sIdx].push(index)
+          } else {
+            contactDot = index
+            this.spanArr.push(1)
+            sIdx = sIdx + 1
+            this.sameRowArr.push([index])
+          }
+        }
+      })
+    },
+    // 合并的方法
+    spanMethod({ rowIndex, columnIndex }) {
       // 合并操作列的下标要+1
       if (columnIndex === 0 || columnIndex === 2 || columnIndex === 4) {
         const _row = this.spanArr[rowIndex]
@@ -93,17 +95,18 @@ export default {
         }
       }
     },
-    cellMouseEnter(row, column, cell, event) {
+    cellMouseEnter(row) {
       this.sameRowArr.map((item) => {
         if (item.indexOf(row.$index) != -1) {
           this.curRowArr = item
         }
       })
     },
-    cellMouseLeave(row, column, cell, event) {
+    cellMouseLeave() {
       this.curRowArr = []
     },
-    rowClassName({ row, rowIndex }) {
+    // hover背景颜色变化
+    rowClassName({ rowIndex }) {
       let temArr = this.curRowArr
       for (let i = 0; i < temArr.length; i++) {
         if (rowIndex == temArr[i]) {
