@@ -5,9 +5,9 @@
       :option="tableOption"
       @on-load="tableOnLoad"
       :span-method="spanMethod"
-      @cell-mouse-enter="cellMouseEnter"
-      @cell-mouse-leave="cellMouseLeave"
       :row-class-name="rowClassName"
+      @current-row-change="handleCurrentRowChange"
+      ref="crud"
     ></avue-crud>
   </div>
 </template>
@@ -95,18 +95,8 @@ export default {
         }
       }
     },
-    cellMouseEnter(row) {
-      this.sameRowArr.map((item) => {
-        if (item.indexOf(row.$index) != -1) {
-          this.curRowArr = item
-        }
-      })
-    },
-    cellMouseLeave() {
-      this.curRowArr = []
-    },
     // hover背景颜色变化
-    rowClassName({ rowIndex }) {
+    rowClassName({ row,rowIndex }) {
       let temArr = this.curRowArr
       for (let i = 0; i < temArr.length; i++) {
         if (rowIndex == temArr[i]) {
@@ -115,6 +105,14 @@ export default {
         }
       }
     },
+    handleCurrentRowChange(row) {
+      this.sameRowArr.map((item) => {
+        if (item.indexOf(row.$index) != -1) {
+          this.curRowArr = item
+        }
+      })
+      this.$refs.crud.setCurrentRow(row)
+    },
   },
 }
 </script>
@@ -122,5 +120,8 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .row_class > td {
   background: rgba(129, 211, 248, 1) !important;
+}
+::v-deep .row_click_class > td {
+  background: rgba(110, 211, 248, 1);
 }
 </style>
