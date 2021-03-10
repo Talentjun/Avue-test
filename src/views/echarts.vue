@@ -16,22 +16,26 @@ export default {
 
     // 指定图表的配置项和数据
     var option = {
-      tooltip: {
-        show: false,
-      },
       animation: false, // 不展示渲染动画
+      tooltip: {
+        trigger: 'item', // tooltip前提条件
+      },
       series: [
         {
           type: 'pie',
           radius: '55%',
           center: ['50%', '50%'],
-          hoverAnimation: false,
+          // hoverAnimation: false,
           data: [
             {
               value: 30,
               name: '30%',
               itemStyle: {
                 color: 'rgb(79,121,189)',
+              },
+              tooltip: {
+                formatter:
+                  '<p style="text-align:center">竞价成功概率较高<br />{b}</p>',
               },
             },
             {
@@ -40,6 +44,10 @@ export default {
               itemStyle: {
                 color: 'rgb(155,187,89)',
               },
+              tooltip: {
+                formatter:
+                  '<p style="text-align:center">竞价成功概率中等<br />{b}</p>',
+              },
             },
             {
               value: 45,
@@ -47,17 +55,14 @@ export default {
               itemStyle: {
                 color: 'rgb(192,80,77)',
               },
+              tooltip: {
+                formatter:
+                  '<p style="text-align:center">竞价成功概率较低<br />{b}</p>',
+              },
             },
           ],
-          label: { position: 'inside' },
+          label: { position: 'inside', color: 'black' }, // 将name展示在里面 且颜色为黑色
           itemStyle: { borderWidth: 1, borderColor: '#fff' },
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 0,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
         },
       ],
     }
